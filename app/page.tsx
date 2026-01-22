@@ -7,9 +7,8 @@ import Link from 'next/link';
 export default function Home() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [mapLoaded, setMapLoaded] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const mapRef = useRef<HTMLDivElement>(null);
-  const navLogoRef = useRef<HTMLDivElement>(null);
+  const floatingLogoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -17,13 +16,21 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (!floatingLogoRef.current) return;
+
       const scrolled = window.scrollY;
       const maxScroll = 300;
       const progress = Math.min(scrolled / maxScroll, 1);
-      setScrollProgress(progress);
+
+      // Direkte DOM-Manipulation - kein Re-Render!
+      const logo = floatingLogoRef.current;
+      logo.style.top = `calc(35vh - ${progress * 31}vh)`;
+      logo.style.width = `${200 - progress * 100}px`;
+      logo.style.height = `${200 - progress * 100}px`;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial call
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -61,46 +68,49 @@ export default function Home() {
 
   return (
     <>
-      {/* NAVBAR */}
-      <nav className="navbar">
-        <div className="navbar-container">
-          <div
-            className="navbar-logo"
-            ref={navLogoRef}
-            style={{
-              width: 100,
-              height: 100,
-            }}
-          >
-            <Image
-              src="/logo_clean_white.png"
-              alt="WHYEM Logo"
-              width={500}
-              height={500}
-              priority
-            />
-          </div>
-          <div className="navbar-nav">
-            <a href="#about">Über uns</a>
-            <a href="#services">Services</a>
-            <a href="#hours">Öffnungszeiten</a>
-            <a href="#contact">Kontakt</a>
-          </div>
-        </div>
-      </nav>
+      {/* FLOATING LOGO */}
+      <div
+        className="floating-logo"
+        ref={floatingLogoRef}
+        style={{
+          position: 'fixed',
+          top: '35vh',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 200,
+          width: '200px',
+          height: '200px',
+          pointerEvents: 'none',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          borderRadius: '50%',
+          padding: '1rem',
+          background: 'rgba(10, 10, 10, 0.41)',
+        }}
+      >
+        <Image
+          src={
+            theme === 'dark' ? '/logo_clean_white.png' : '/logo_clean_black.png'
+          }
+          alt="WHYEM Logo"
+          width={500}
+          height={500}
+          priority
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+        />
+      </div>
 
       {/* HERO */}
       <section className="hero">
         <div className="hero-content">
-          <div className="hero-logo animate-fade-in-up">
-            {/* <Image
-              src="/logo-klein.png"
-              alt="WHYEM Logo"
-              width={200}
-              height={200}
-              priority
-            /> */}
-          </div>
+          <div
+            className="hero-logo-spacer"
+            style={{
+              width: '200px',
+              height: '280px',
+              marginBottom: '0rem',
+            }}
+          />
           <h1 className="animate-fade-in-up delay-100">WHYEM</h1>
           <p className="hero-subtitle animate-fade-in-up delay-200">
             Barbershop x co
@@ -589,7 +599,12 @@ export default function Home() {
         <div className="container">
           <div className="footer-top">
             <div className="footer-logo">
-              <Image src="/logo-klein.png" alt="WHYEM" width={40} height={40} />
+              <Image
+                src="/logo_clean_white.png"
+                alt="WHYEM"
+                width={40}
+                height={40}
+              />
               <span>WHYEM</span>
             </div>
             <div className="footer-links">
@@ -624,13 +639,13 @@ export default function Home() {
       </footer>
 
       {/* Theme Toggle */}
-      <button
+      {/* <button
         className="theme-toggle"
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         aria-label="Theme wechseln"
       >
         {theme === 'dark' ? '☀' : '☾'}
-      </button>
+      </button> */}
     </>
   );
 }
