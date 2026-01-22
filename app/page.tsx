@@ -7,11 +7,25 @@ import Link from 'next/link';
 export default function Home() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const mapRef = useRef<HTMLDivElement>(null);
+  const navLogoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      const maxScroll = 300;
+      const progress = Math.min(scrolled / maxScroll, 1);
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,17 +61,45 @@ export default function Home() {
 
   return (
     <>
+      {/* NAVBAR */}
+      <nav className="navbar">
+        <div className="navbar-container">
+          <div
+            className="navbar-logo"
+            ref={navLogoRef}
+            style={{
+              width: 100,
+              height: 100,
+            }}
+          >
+            <Image
+              src="/logo_clean_white.png"
+              alt="WHYEM Logo"
+              width={500}
+              height={500}
+              priority
+            />
+          </div>
+          <div className="navbar-nav">
+            <a href="#about">Über uns</a>
+            <a href="#services">Services</a>
+            <a href="#hours">Öffnungszeiten</a>
+            <a href="#contact">Kontakt</a>
+          </div>
+        </div>
+      </nav>
+
       {/* HERO */}
       <section className="hero">
         <div className="hero-content">
           <div className="hero-logo animate-fade-in-up">
-            <Image
+            {/* <Image
               src="/logo-klein.png"
               alt="WHYEM Logo"
               width={200}
               height={200}
               priority
-            />
+            /> */}
           </div>
           <h1 className="animate-fade-in-up delay-100">WHYEM</h1>
           <p className="hero-subtitle animate-fade-in-up delay-200">
@@ -89,7 +131,12 @@ export default function Home() {
         <div className="container">
           <div className="about-grid">
             <div className="about-image reveal">
-              <div className="image-placeholder">✂</div>
+              <Image
+                src="/stock_foto1.webp"
+                alt="Barbershop"
+                width={650}
+                height={800}
+              />
             </div>
             <div className="about-content reveal">
               <span className="section-tag">Über uns</span>
@@ -172,7 +219,7 @@ export default function Home() {
           {/* Hair */}
           <div className="service-category reveal">
             <div className="category-header">
-              <span className="category-icon">✂</span>
+              <span className="category-icon"></span>
               <h3>HAIR</h3>
             </div>
             <div className="service-list">
@@ -214,7 +261,7 @@ export default function Home() {
           {/* Beard */}
           <div className="service-category reveal">
             <div className="category-header">
-              <span className="category-icon">🧔</span>
+              <span className="category-icon"></span>
               <h3>BEARD</h3>
             </div>
             <div className="service-list">
@@ -248,7 +295,7 @@ export default function Home() {
           {/* Wellness */}
           <div className="service-category reveal">
             <div className="category-header">
-              <span className="category-icon">✨</span>
+              <span className="category-icon"></span>
               <h3>WELLNESS</h3>
             </div>
             <div className="service-list">
@@ -290,7 +337,7 @@ export default function Home() {
           {/* Combos */}
           <div className="service-category reveal">
             <div className="category-header">
-              <span className="category-icon">⚡</span>
+              <span className="category-icon"></span>
               <h3>COMBOS</h3>
             </div>
             <div className="service-list">
@@ -327,7 +374,7 @@ export default function Home() {
           {/* Add-Ons */}
           <div className="service-category reveal">
             <div className="category-header">
-              <span className="category-icon">+</span>
+              <span className="category-icon"></span>
               <h3>ADD-ONS</h3>
             </div>
             <div className="service-list">
@@ -358,7 +405,7 @@ export default function Home() {
 
           {/* WHYEM Standard Box */}
           <div className="whyem-standard reveal">
-            <div className="standard-icon">◆</div>
+            <div className="standard-icon"></div>
             <h3>WHYEM STANDARD</h3>
             <p className="standard-tagline">Bei jedem Service inklusive</p>
             <p>
@@ -582,7 +629,7 @@ export default function Home() {
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         aria-label="Theme wechseln"
       >
-        {theme === 'dark' ? '☀' : '●'}
+        {theme === 'dark' ? '☀' : '☾'}
       </button>
     </>
   );
