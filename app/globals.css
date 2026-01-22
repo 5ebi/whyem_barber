@@ -154,9 +154,37 @@ a {
   }
 }
 
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
 .animate-fade-in-up {
   animation: fadeIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   opacity: 0;
+}
+
+/* Staggered intro animation delays */
+.delay-w {
+  animation-delay: 0.2s;
+}
+.delay-y {
+  animation-delay: 0.5s;
+}
+.delay-h1 {
+  animation-delay: 0.9s;
+}
+.delay-subtitle {
+  animation-delay: 1.2s;
+}
+.delay-tagline {
+  animation-delay: 1.5s;
+}
+.delay-cta {
+  animation-delay: 1.8s;
+}
+.delay-scroll {
+  animation-delay: 2.1s;
 }
 
 .delay-100 {
@@ -299,10 +327,13 @@ section {
 }
 
 .hero h1 {
-  font-size: clamp(3.5rem, 12vw, 10rem);
+  font-size: clamp(2.4rem, 6.4vw, 2.8rem);
   font-weight: 300;
   letter-spacing: 0.2em;
   margin-bottom: 0.5rem;
+  width: 480px;
+  max-width: 90vw;
+  text-align: center;
   font-family:
     'Montserrat',
     var(--font-geist-sans),
@@ -313,12 +344,15 @@ section {
 }
 
 .hero-subtitle {
-  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-size: clamp(0.72rem, 2vw, 0.9rem);
   font-weight: 400;
   letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--gray-500);
   margin-bottom: 3rem;
+  width: 480px;
+  max-width: 90vw;
+  text-align: center;
   font-family:
     'Montserrat',
     var(--font-geist-sans),
@@ -1096,19 +1130,23 @@ section {
   -webkit-backface-visibility: hidden;
 }
 
+/* Navbar Blur */
+.navbar-blur {
+  will-change: opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: none;
+}
+
 @media (max-width: 768px) {
   .floating-logo {
-    --logo-scale: 0.7;
-    transform: translate(-50%, -50%) scale(var(--logo-scale)) !important;
-    padding: 0.6rem !important;
+    transform: translate(-50%, -50%) !important;
   }
 }
 
 @media (max-width: 480px) {
   .floating-logo {
-    --logo-scale: 0.6;
-    transform: translate(-50%, -50%) scale(var(--logo-scale)) !important;
-    padding: 0.4rem !important;
+    transform: translate(-50%, -50%) !important;
   }
   .hero h1 {
     letter-spacing: 0.1em;

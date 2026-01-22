@@ -9,6 +9,7 @@ export default function Home() {
   const [mapLoaded, setMapLoaded] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
   const floatingLogoRef = useRef<HTMLDivElement>(null);
+  const navbarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -16,17 +17,39 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!floatingLogoRef.current) return;
+      if (!floatingLogoRef.current || !navbarRef.current) return;
 
       const scrolled = window.scrollY;
       const maxScroll = 300;
       const progress = Math.min(scrolled / maxScroll, 1);
 
-      // Direkte DOM-Manipulation - kein Re-Render!
+      // Logo Animation
       const logo = floatingLogoRef.current;
-      logo.style.top = `calc(35vh - ${progress * 31}vh)`;
-      logo.style.width = `${200 - progress * 100}px`;
-      logo.style.height = `${200 - progress * 100}px`;
+      const startTop = 35; // vh
+      const endTop = 40; // px (center of 80px navbar)
+      const currentTop =
+        progress < 1
+          ? `calc(${startTop}vh - ${progress * startTop}vh + ${progress * endTop}px)`
+          : `${endTop}px`;
+      logo.style.top = currentTop;
+
+      // Responsive logo sizes
+      const isMobile = window.innerWidth <= 768;
+      const startSize = isMobile ? 336 : 480;
+      const endSize = 80;
+      const currentSize = startSize - progress * (startSize - endSize);
+      logo.style.width = `${currentSize}px`;
+      logo.style.height = `${currentSize}px`;
+
+      // Navbar Opacity + Border
+      const navbar = navbarRef.current;
+      navbar.style.opacity = `${progress}`;
+      navbar.style.borderBottomColor =
+        progress >= 1
+          ? document.documentElement.getAttribute('data-theme') === 'dark'
+            ? 'rgba(255, 255, 255, 0.1)'
+            : 'rgba(0, 0, 0, 0.1)'
+          : 'transparent';
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -68,6 +91,28 @@ export default function Home() {
 
   return (
     <>
+      {/* NAVBAR WITH BLUR */}
+      <div
+        className="navbar-blur"
+        ref={navbarRef}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '80px',
+          zIndex: 150,
+          opacity: 0,
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          background:
+            theme === 'dark'
+              ? 'rgba(10, 10, 10, 0.7)'
+              : 'rgba(255, 255, 255, 0.7)',
+          borderBottom: '1px solid transparent',
+        }}
+      />
+
       {/* FLOATING LOGO */}
       <div
         className="floating-logo"
@@ -78,26 +123,51 @@ export default function Home() {
           left: '50%',
           transform: 'translate(-50%, -50%)',
           zIndex: 200,
-          width: '200px',
-          height: '200px',
+          width: '480px',
+          height: '480px',
           pointerEvents: 'none',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          borderRadius: '50%',
-          padding: '1rem',
-          background: 'rgba(10, 10, 10, 0.41)',
         }}
       >
-        <Image
-          src={
-            theme === 'dark' ? '/logo_clean_white.png' : '/logo_clean_black.png'
-          }
-          alt="WHYEM Logo"
-          width={500}
-          height={500}
-          priority
-          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-        />
+        {/* W Logo */}
+        <div
+          className="logo-w animate-fade-in delay-w"
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            top: 0,
+            left: 0,
+          }}
+        >
+          <Image
+            src={theme === 'dark' ? '/logo_w_white.png' : '/logo_w_black.png'}
+            alt="W"
+            width={500}
+            height={500}
+            priority
+            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+          />
+        </div>
+        {/* Y Logo */}
+        <div
+          className="logo-y animate-fade-in delay-y"
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            top: 0,
+            left: 0,
+          }}
+        >
+          <Image
+            src={theme === 'dark' ? '/logo_y_white.png' : '/logo_y_black.png'}
+            alt="Y"
+            width={500}
+            height={500}
+            priority
+            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+          />
+        </div>
       </div>
 
       {/* HERO */}
@@ -106,16 +176,16 @@ export default function Home() {
           <div
             className="hero-logo-spacer"
             style={{
-              width: '200px',
-              height: '280px',
+              width: '480px',
+              height: '500px',
               marginBottom: '0rem',
             }}
           />
-          <h1 className="animate-fade-in-up delay-100">WHYEM</h1>
-          <p className="hero-subtitle animate-fade-in-up delay-200">
+          <h1 className="animate-fade-in-up delay-h1">WHYEM</h1>
+          <p className="hero-subtitle animate-fade-in-up delay-subtitle">
             Barbershop x co
           </p>
-          <div className="hero-tagline animate-fade-in-up delay-300">
+          <div className="hero-tagline animate-fade-in-up delay-tagline">
             <span>Wien</span>
             <span className="divider" />
             <span>1180</span>
@@ -126,12 +196,12 @@ export default function Home() {
             href="https://www.treatwell.at/"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary animate-fade-in-up delay-400"
+            className="btn-primary animate-fade-in-up delay-cta"
           >
             Termin buchen
           </a>
         </div>
-        <div className="scroll-indicator animate-fade-in-up delay-500">
+        <div className="scroll-indicator animate-fade-in-up delay-scroll">
           <span />
         </div>
       </section>
