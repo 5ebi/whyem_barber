@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const theme = 'dark';
   const [mapLoaded, setMapLoaded] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
   const floatingLogoRef = useRef<HTMLDivElement>(null);
@@ -13,7 +13,7 @@ export default function Home() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +25,8 @@ export default function Home() {
 
       // Logo Animation
       const logo = floatingLogoRef.current;
-      const startTop = 35; // vh
+      const isMobile = window.innerWidth <= 768;
+      const startTop = isMobile ? 30 : 35; // vh - mobile starts higher
       const endTop = 40; // px (center of 80px navbar)
       const currentTop =
         progress < 1
@@ -34,16 +35,16 @@ export default function Home() {
       logo.style.top = currentTop;
 
       // Responsive logo sizes
-      const isMobile = window.innerWidth <= 768;
-      const startSize = isMobile ? 336 : 480;
+      const startSize = isMobile ? Math.min(window.innerWidth * 0.9, 336) : 480;
       const endSize = 80;
       const currentSize = startSize - progress * (startSize - endSize);
       logo.style.width = `${currentSize}px`;
       logo.style.height = `${currentSize}px`;
 
-      // Navbar Opacity + Border
+      // Navbar Opacity + Border - blur fades in while logo moves
       const navbar = navbarRef.current;
-      navbar.style.opacity = `${progress}`;
+      const navbarOpacity = Math.min(progress * 2, 1);
+      navbar.style.opacity = `${navbarOpacity}`;
       navbar.style.borderBottomColor =
         progress >= 1
           ? document.documentElement.getAttribute('data-theme') === 'dark'
@@ -101,14 +102,14 @@ export default function Home() {
           left: 0,
           right: 0,
           height: '80px',
-          zIndex: 150,
+          zIndex: 250,
           opacity: 0,
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
           background:
             theme === 'dark'
-              ? 'rgba(10, 10, 10, 0.7)'
-              : 'rgba(255, 255, 255, 0.7)',
+              ? 'rgba(10, 10, 10, 0.6)'
+              : 'rgba(255, 255, 255, 0.6)',
           borderBottom: '1px solid transparent',
         }}
       />
@@ -122,15 +123,15 @@ export default function Home() {
           top: '35vh',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          zIndex: 200,
-          width: '480px',
-          height: '480px',
+          zIndex: 300,
+          width: '450px',
+          height: '450px',
           pointerEvents: 'none',
         }}
       >
         {/* W Logo */}
         <div
-          className="logo-w animate-fade-in delay-w"
+          className="logo-w animate-fade-in delay-200"
           style={{
             position: 'absolute',
             width: '100%',
@@ -150,7 +151,7 @@ export default function Home() {
         </div>
         {/* Y Logo */}
         <div
-          className="logo-y animate-fade-in delay-y"
+          className="logo-y animate-fade-in delay-400"
           style={{
             position: 'absolute',
             width: '100%',
@@ -176,16 +177,49 @@ export default function Home() {
           <div
             className="hero-logo-spacer"
             style={{
-              width: '480px',
-              height: '500px',
+              width: 'min(400px, 80vw)',
+              height: 'min(500px, 90vw)',
               marginBottom: '0rem',
             }}
           />
-          <h1 className="animate-fade-in-up delay-h1">WHYEM</h1>
-          <p className="hero-subtitle animate-fade-in-up delay-subtitle">
-            Barbershop x co
-          </p>
-          <div className="hero-tagline animate-fade-in-up delay-tagline">
+          <div
+            style={{
+              position: 'relative',
+              width: 'min(400px, 80vw)',
+              aspectRatio: '330 / 100',
+              marginTop: 'clamp(-40px, -5vw, -60px)',
+              marginBottom: '24px',
+            }}
+          >
+            <Image
+              src="/whyem.webp"
+              alt="WHYEM"
+              width={330}
+              height={100}
+              className="animate-fade-in-up delay-600"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: 'auto',
+              }}
+            />
+            <Image
+              src="/barbershop_x_co.webp"
+              alt="Barbershop x co"
+              width={330}
+              height={100}
+              className="animate-fade-in-up-60 delay-800"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: 'auto',
+              }}
+            />
+          </div>
+
+          <div className="hero-tagline animate-fade-in-up delay-1000">
             <span>Wien</span>
             <span className="divider" />
             <span>1180</span>
@@ -196,12 +230,13 @@ export default function Home() {
             href="https://www.treatwell.at/"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary animate-fade-in-up delay-cta"
+            className="btn-primary animate-fade-in-up delay-1200"
+            style={{ margin: '48px 0' }}
           >
-            Termin buchen
+            Termin jetzt buchen
           </a>
         </div>
-        <div className="scroll-indicator animate-fade-in-up delay-scroll">
+        <div className="scroll-indicator animate-fade-in-up delay-1400">
           <span />
         </div>
       </section>
@@ -220,38 +255,46 @@ export default function Home() {
             </div>
             <div className="about-content reveal">
               <span className="section-tag">Über uns</span>
-              <h2>Handwerk trifft Präzision</h2>
+              <h2>Die Antwort auf das &bdquo;Warum&ldquo;</h2>
               <p>
-                <strong>WHYEM Barber</strong> steht für kompromisslose Qualität
-                und ein Erlebnis, das über den klassischen Haarschnitt
-                hinausgeht. In unserem Studio in Wien Währing verbinden wir
-                traditionelles Barber-Handwerk mit modernen Techniken.
+                In der <strong>Weimarer Straße 13</strong> stellen wir eine
+                einfache Frage: Why? Warum solltest du dich mit einem
+                durchschnittlichen Haarschnitt zufrieden geben? Warum sollte ein
+                Barber-Besuch nur eine Pflicht sein und kein Erlebnis?
               </p>
               <p>
-                Jeder Schnitt wird individuell auf dich abgestimmt &ndash; denn
-                wir glauben, dass ein guter Barber nicht nur schneidet, sondern
-                versteht.
+                <strong>Whyem</strong> ist die Antwort für alle, die mehr
+                erwarten.
               </p>
               <div className="why-points">
                 <div className="why-point">
                   <span className="why-icon">01</span>
                   <div>
-                    <strong>Präzision</strong>
-                    <p>Jeder Schnitt sitzt. Keine Kompromisse.</p>
+                    <strong>Why Precision?</strong>
+                    <p>
+                      Weil ein Millimeter den Unterschied zwischen
+                      &bdquo;gut&ldquo; und &bdquo;perfekt&ldquo; macht.
+                    </p>
                   </div>
                 </div>
                 <div className="why-point">
                   <span className="why-icon">02</span>
                   <div>
-                    <strong>Erfahrung</strong>
-                    <p>Über 17 Jahre Expertise im Barbier-Handwerk.</p>
+                    <strong>Why Style?</strong>
+                    <p>
+                      Weil dein Look dein erstes Statement ist, noch bevor du
+                      ein Wort sagst.
+                    </p>
                   </div>
                 </div>
                 <div className="why-point">
                   <span className="why-icon">03</span>
                   <div>
-                    <strong>Ambiente</strong>
-                    <p>Ein Ort zum Entspannen und Wohlfühlen.</p>
+                    <strong>Why Us?</strong>
+                    <p>
+                      Weil wir in 1180 Wien das Handwerk nicht nur ausüben,
+                      sondern jeden Tag hinterfragen, um noch besser zu werden.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -267,8 +310,9 @@ export default function Home() {
             <span className="section-tag">Der Barber</span>
             <h2>MUDI</h2>
             <p className="barber-intro">
-              Gründer und Master Barber. Mit Leidenschaft für das Handwerk und
-              einem Auge für Details.
+              Gründer und Master Barber. Meister aller Schnitttechniken inkl.
+              Transition-Styles &amp; Fade Cuts. <br />
+              Gewinner: 1. Platz &bdquo;Barber Battle Vienna 2022&ldquo;.
             </p>
             <div className="barber-stats">
               <div className="stat">
@@ -305,35 +349,19 @@ export default function Home() {
             <div className="service-list">
               <div className="service-item">
                 <div className="service-info">
-                  <h4>Herren Haarschnitt</h4>
-                  <p>Waschen, Schneiden, Styling</p>
-                  <span className="service-duration">ca. 45 min</span>
-                </div>
-                <span className="service-price">&euro; 38</span>
-              </div>
-              <div className="service-item">
-                <div className="service-info">
-                  <h4>Maschinenschnitt</h4>
-                  <p>Eine Länge</p>
-                  <span className="service-duration">ca. 20 min</span>
-                </div>
-                <span className="service-price">&euro; 25</span>
-              </div>
-              <div className="service-item">
-                <div className="service-info">
-                  <h4>Kinder &amp; Jugend</h4>
-                  <p>Bis 14 Jahre</p>
-                  <span className="service-duration">ca. 30 min</span>
-                </div>
-                <span className="service-price">&euro; 28</span>
-              </div>
-              <div className="service-item">
-                <div className="service-info">
-                  <h4>Fade / Skin Fade</h4>
-                  <p>Präziser Verlauf, cleaner Look</p>
-                  <span className="service-duration">ca. 50 min</span>
+                  <h4>The Signature Cut</h4>
+                  <p>Beratung, Wäsche, Schnitt &amp; Styling</p>
+                  <span className="service-duration">40 min</span>
                 </div>
                 <span className="service-price">&euro; 42</span>
+              </div>
+              <div className="service-item">
+                <div className="service-info">
+                  <h4>Young Gent (Kids Cut)</h4>
+                  <p>Kinderhaarschnitt</p>
+                  <span className="service-duration">30 min</span>
+                </div>
+                <span className="service-price">&euro; 35</span>
               </div>
             </div>
           </div>
@@ -347,27 +375,19 @@ export default function Home() {
             <div className="service-list">
               <div className="service-item">
                 <div className="service-info">
-                  <h4>Bart Styling</h4>
-                  <p>Trimmen, Konturieren, Pflege</p>
-                  <span className="service-duration">ca. 25 min</span>
-                </div>
-                <span className="service-price">&euro; 22</span>
-              </div>
-              <div className="service-item">
-                <div className="service-info">
-                  <h4>Nassrasur</h4>
-                  <p>Traditionelle Rasur mit heißem Tuch</p>
-                  <span className="service-duration">ca. 30 min</span>
-                </div>
-                <span className="service-price">&euro; 28</span>
-              </div>
-              <div className="service-item">
-                <div className="service-info">
-                  <h4>Bart Komplett</h4>
-                  <p>Waschen, Trimmen, Rasur der Konturen, Öl</p>
-                  <span className="service-duration">ca. 40 min</span>
+                  <h4>Beard Design &amp; Contour</h4>
+                  <p>Form &amp; Messer-Kontur inkl. UV-C Heißkompresse</p>
+                  <span className="service-duration">30 min</span>
                 </div>
                 <span className="service-price">&euro; 35</span>
+              </div>
+              <div className="service-item">
+                <div className="service-info">
+                  <h4>Traditional Full Shave</h4>
+                  <p>Klassische Vollrasur</p>
+                  <span className="service-duration">45 min</span>
+                </div>
+                <span className="service-price">&euro; 45</span>
               </div>
             </div>
           </div>
@@ -381,35 +401,19 @@ export default function Home() {
             <div className="service-list">
               <div className="service-item">
                 <div className="service-info">
-                  <h4>Augenbrauen Styling</h4>
-                  <p>Zupfen oder Waxing</p>
-                  <span className="service-duration">ca. 10 min</span>
+                  <h4>Deep Head Spa</h4>
+                  <p>Kopf, Schläfen &amp; Nacken Massage</p>
+                  <span className="service-duration">25 min</span>
                 </div>
-                <span className="service-price">&euro; 10</span>
+                <span className="service-price">&euro; 29</span>
               </div>
               <div className="service-item">
                 <div className="service-info">
-                  <h4>Kopfmassage</h4>
-                  <p>Entspannende Massage für Kopf und Nacken</p>
-                  <span className="service-duration">ca. 15 min</span>
+                  <h4>The Guardian Ritual</h4>
+                  <p>Gesichtsmassage, Hot Towel &amp; Kopf-Wellness</p>
+                  <span className="service-duration">40 min</span>
                 </div>
-                <span className="service-price">&euro; 15</span>
-              </div>
-              <div className="service-item">
-                <div className="service-info">
-                  <h4>Gesichtsbehandlung</h4>
-                  <p>Reinigung, Peeling, Maske &amp; Pflege</p>
-                  <span className="service-duration">ca. 30 min</span>
-                </div>
-                <span className="service-price">&euro; 40</span>
-              </div>
-              <div className="service-item">
-                <div className="service-info">
-                  <h4>Black Mask Treatment</h4>
-                  <p>Tiefenreinigung mit Aktivkohle</p>
-                  <span className="service-duration">ca. 20 min</span>
-                </div>
-                <span className="service-price">&euro; 25</span>
+                <span className="service-price">&euro; 60</span>
               </div>
             </div>
           </div>
@@ -423,30 +427,35 @@ export default function Home() {
             <div className="service-list">
               <div className="service-item featured">
                 <div className="service-info">
-                  <h4>The Classic</h4>
-                  <p>Haarschnitt + Bart Styling</p>
-                  <span className="service-duration">ca. 60 min</span>
-                </div>
-                <span className="service-price">&euro; 55</span>
-              </div>
-              <div className="service-item premium">
-                <div className="service-info">
-                  <h4>WHYEM Signature</h4>
-                  <p>Haarschnitt + Bart Komplett + Augenbrauen</p>
-                  <span className="service-duration">ca. 90 min</span>
+                  <h4>The Essentials</h4>
+                  <p>Signature Cut + Beard Design + Deep Head Spa</p>
+                  <span className="service-duration">80 min</span>
                 </div>
                 <span className="service-price">&euro; 75</span>
               </div>
               <div className="service-item premium">
                 <div className="service-info">
-                  <h4>The Royal</h4>
-                  <p>
-                    Haarschnitt + Bart Komplett + Gesichtsbehandlung +
-                    Kopfmassage
-                  </p>
-                  <span className="service-duration">ca. 120 min</span>
+                  <h4>The Full Ritual</h4>
+                  <p>Schnitt + Beard Design + Deep Head Spa + Waxing</p>
+                  <span className="service-duration">90 min</span>
                 </div>
-                <span className="service-price">&euro; 110</span>
+                <span className="service-price">&euro; 95</span>
+              </div>
+              <div className="service-item premium">
+                <div className="service-info">
+                  <h4>The Guardian Experience</h4>
+                  <p>Signature Cut + Beard Design + Guardian Ritual + Waxing</p>
+                  <span className="service-duration">120 min</span>
+                </div>
+                <span className="service-price">&euro; 129</span>
+              </div>
+              <div className="service-item">
+                <div className="service-info">
+                  <h4>The Legacy (Dad &amp; Son)</h4>
+                  <p>Vater &amp; Sohn Combo</p>
+                  <span className="service-duration">75 min</span>
+                </div>
+                <span className="service-price">&euro; 75</span>
               </div>
             </div>
           </div>
@@ -460,25 +469,11 @@ export default function Home() {
             <div className="service-list">
               <div className="service-item">
                 <div className="service-info">
-                  <h4>Haar-Design / Lines</h4>
-                  <p>Individuelle Muster und Linien</p>
+                  <h4>Nose &amp; Ear Waxing</h4>
+                  <p>Schonendes Waxing für Nase &amp; Ohren</p>
+                  <span className="service-duration">10 min</span>
                 </div>
-                <span className="service-price">ab &euro; 5</span>
-              </div>
-              <div className="service-item">
-                <div className="service-info">
-                  <h4>Grau-Abdeckung (Camo)</h4>
-                  <p>Natürliche Farbabdeckung grauer Haare</p>
-                  <span className="service-duration">+ 20 min</span>
-                </div>
-                <span className="service-price">&euro; 15</span>
-              </div>
-              <div className="service-item">
-                <div className="service-info">
-                  <h4>Premium Styling-Produkt</h4>
-                  <p>Finish mit High-End Produkten</p>
-                </div>
-                <span className="service-price">&euro; 5</span>
+                <span className="service-price">&euro; 12</span>
               </div>
             </div>
           </div>
@@ -486,12 +481,12 @@ export default function Home() {
           {/* WHYEM Standard Box */}
           <div className="whyem-standard reveal">
             <div className="standard-icon"></div>
-            <h3>WHYEM STANDARD</h3>
+            <h3 style={{ opacity: '0.5' }}>WHYEM STANDARD</h3>
             <p className="standard-tagline">Bei jedem Service inklusive</p>
             <p>
-              Frische Einweg-Materialien &bull; Desinfizierte Werkzeuge &bull;
-              Premium Pflegeprodukte &bull; Heißes Tuch Finish &bull; Styling
-              Beratung
+              Frische Einweg-Materialien &bull; Desinfizierte Werkzeuge <br />
+              UV-Licht gereinigte Handtücher &bull; Premium Pflegeprodukte
+              &bull; Heißes Tuch Finish &bull; Styling Beratung
             </p>
           </div>
         </div>
@@ -504,29 +499,29 @@ export default function Home() {
             <span className="section-tag">Öffnungszeiten</span>
             <h2>Wann wir für dich da sind</h2>
             <div className="hours-grid">
-              <div className="hours-item closed">
+              <div className="hours-item">
                 <span className="day">Montag</span>
-                <span className="time">Geschlossen</span>
+                <span className="time">08:00 &ndash; 18:00</span>
               </div>
               <div className="hours-item">
                 <span className="day">Dienstag</span>
-                <span className="time">09:00 &ndash; 19:00</span>
+                <span className="time">08:00 &ndash; 18:00</span>
               </div>
               <div className="hours-item">
                 <span className="day">Mittwoch</span>
-                <span className="time">09:00 &ndash; 19:00</span>
+                <span className="time">08:00 &ndash; 18:00</span>
               </div>
               <div className="hours-item">
                 <span className="day">Donnerstag</span>
-                <span className="time">09:00 &ndash; 19:00</span>
+                <span className="time">08:00 &ndash; 18:00</span>
               </div>
               <div className="hours-item">
                 <span className="day">Freitag</span>
-                <span className="time">09:00 &ndash; 19:00</span>
+                <span className="time">08:00 &ndash; 18:00</span>
               </div>
               <div className="hours-item">
                 <span className="day">Samstag</span>
-                <span className="time">09:00 &ndash; 17:00</span>
+                <span className="time">10:00 &ndash; 18:00</span>
               </div>
               <div className="hours-item closed">
                 <span className="day">Sonntag</span>
@@ -559,7 +554,14 @@ export default function Home() {
         <div className="container">
           <div className="contact-header reveal">
             <span className="section-tag">Kontakt</span>
-            <h2>Besuche uns</h2>
+            <a
+              href="https://www.treatwell.at/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              Besuche uns
+            </a>
           </div>
           <div className="contact-grid">
             <div className="contact-info reveal">
@@ -626,10 +628,10 @@ export default function Home() {
               </div>
             </div>
             <div className="contact-cta reveal">
-              <h3>Bereit für deinen neuen Look?</h3>
+              <h3>Zeit für ein Upgrade?</h3>
               <p>
-                Buche jetzt deinen Termin online &ndash; schnell, einfach und
-                bequem. Wir freuen uns auf dich.
+                Schluss mit &bdquo;geht schon&ldquo; &ndash; hol dir den Cut,
+                der Köpfe dreht. In 30 Sekunden gebucht.
               </p>
               <a
                 href="https://www.treatwell.at/"
@@ -637,7 +639,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="btn-primary"
               >
-                Jetzt Termin buchen
+                Termin jetzt buchen
               </a>
             </div>
           </div>
@@ -707,15 +709,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
-      {/* Theme Toggle */}
-      {/* <button
-        className="theme-toggle"
-        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-        aria-label="Theme wechseln"
-      >
-        {theme === 'dark' ? '☀' : '☾'}
-      </button> */}
     </>
   );
 }
