@@ -628,11 +628,8 @@ export default function Home() {
               </div>
             </div>
             <div className="contact-cta reveal">
-              <h3>Zeit für ein Upgrade?</h3>
-              <p>
-                Schluss mit &bdquo;geht schon&ldquo; &ndash; hol dir den Cut,
-                der Köpfe dreht. In 30 Sekunden gebucht.
-              </p>
+              <h3>Dein Barber ist bereit. Bist du es?</h3>
+
               <a
                 href="https://www.treatwell.at/"
                 target="_blank"
@@ -688,12 +685,7 @@ export default function Home() {
                   1180 Wien
                 </p>
               </div>
-              <div className="footer-column">
-                <h4>Navigation</h4>
-                <a href="#about">Über uns</a>
-                <a href="#services">Services</a>
-                <a href="#contact">Kontakt</a>
-              </div>
+
               <div className="footer-column">
                 <h4>Rechtliches</h4>
                 <Link href="/impressum">Impressum</Link>
