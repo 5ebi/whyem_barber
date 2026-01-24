@@ -554,14 +554,6 @@ export default function Home() {
         <div className="container">
           <div className="contact-header reveal">
             <span className="section-tag">Kontakt</span>
-            <a
-              href="https://www.treatwell.at/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              Besuche uns
-            </a>
           </div>
           <div className="contact-grid">
             <div className="contact-info reveal">
