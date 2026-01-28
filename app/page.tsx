@@ -501,27 +501,27 @@ export default function Home() {
             <div className="hours-grid">
               <div className="hours-item">
                 <span className="day">Montag</span>
-                <span className="time">08:00 &ndash; 18:00</span>
+                <span className="time">geschlossen</span>
               </div>
               <div className="hours-item">
                 <span className="day">Dienstag</span>
-                <span className="time">08:00 &ndash; 18:00</span>
+                <span className="time">09:30 &ndash; 19:00</span>
               </div>
               <div className="hours-item">
                 <span className="day">Mittwoch</span>
-                <span className="time">08:00 &ndash; 18:00</span>
+                <span className="time">09:30 &ndash; 19:00</span>
               </div>
               <div className="hours-item">
                 <span className="day">Donnerstag</span>
-                <span className="time">08:00 &ndash; 18:00</span>
+                <span className="time">09:30 &ndash; 19:00</span>
               </div>
               <div className="hours-item">
                 <span className="day">Freitag</span>
-                <span className="time">08:00 &ndash; 18:00</span>
+                <span className="time">09:30 &ndash; 19:00</span>
               </div>
               <div className="hours-item">
                 <span className="day">Samstag</span>
-                <span className="time">10:00 &ndash; 18:00</span>
+                <span className="time">09:30 &ndash; 19:00</span>
               </div>
               <div className="hours-item closed">
                 <span className="day">Sonntag</span>
@@ -620,7 +620,11 @@ export default function Home() {
               </div>
             </div>
             <div className="contact-cta reveal">
-              <h3>Dein Barber ist bereit. Bist du es?</h3>
+              <h3>
+                Dein Barber ist bereit.
+                <br /> Bist du es?
+                <br />
+              </h3>
 
               <a
                 href="https://www.treatwell.at/"
@@ -661,12 +665,11 @@ export default function Home() {
           <div className="footer-top">
             <div className="footer-logo">
               <Image
-                src="/logo_clean_white.png"
+                src="/logo_clean_small.png"
                 alt="WHYEM"
-                width={40}
-                height={40}
+                width={125}
+                height={125}
               />
-              <span>WHYEM</span>
             </div>
             <div className="footer-links">
               <div className="footer-column">
@@ -687,8 +690,7 @@ export default function Home() {
           </div>
           <div className="footer-bottom">
             <p>
-              &copy; {new Date().getFullYear()} WHYEM Barber. Alle Rechte
-              vorbehalten.
+              &copy; {new Date().getFullYear()} WHYEM. Alle Rechte vorbehalten.
             </p>
           </div>
         </div>
