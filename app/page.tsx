@@ -5,15 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
-  const theme = 'dark';
   const [mapLoaded, setMapLoaded] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
   const floatingLogoRef = useRef<HTMLDivElement>(null);
   const navbarRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,11 +41,7 @@ export default function Home() {
       const navbarOpacity = Math.min(progress * 2, 1);
       navbar.style.opacity = `${navbarOpacity}`;
       navbar.style.borderBottomColor =
-        progress >= 1
-          ? document.documentElement.getAttribute('data-theme') === 'dark'
-            ? 'rgba(255, 255, 255, 0.1)'
-            : 'rgba(0, 0, 0, 0.1)'
-          : 'transparent';
+        progress >= 1 ? 'rgba(255, 255, 255, 0.1)' : 'transparent';
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -106,10 +97,7 @@ export default function Home() {
           opacity: 0,
           backdropFilter: 'blur(10px)',
           WebkitBackdropFilter: 'blur(10px)',
-          background:
-            theme === 'dark'
-              ? 'rgba(10, 10, 10, 0.6)'
-              : 'rgba(255, 255, 255, 0.6)',
+          background: 'rgba(10, 10, 10, 0.6)',
           borderBottom: '1px solid transparent',
         }}
       />
@@ -141,7 +129,7 @@ export default function Home() {
           }}
         >
           <Image
-            src={theme === 'dark' ? '/logo_w_white.png' : '/logo_w_black.png'}
+            src="/logo_w_white.png"
             alt="W"
             width={500}
             height={500}
@@ -161,7 +149,7 @@ export default function Home() {
           }}
         >
           <Image
-            src={theme === 'dark' ? '/logo_y_white.png' : '/logo_y_black.png'}
+            src="/logo_y_white.png"
             alt="Y"
             width={500}
             height={500}
@@ -245,14 +233,6 @@ export default function Home() {
       <section className="about" id="about">
         <div className="container">
           <div className="about-grid">
-            <div className="about-image reveal">
-              <Image
-                src="/stock_foto1.webp"
-                alt="Barbershop"
-                width={650}
-                height={800}
-              />
-            </div>
             <div className="about-content reveal">
               <span className="section-tag">Über uns</span>
               <h2>Die Antwort auf das &bdquo;Warum&ldquo;</h2>
@@ -306,26 +286,36 @@ export default function Home() {
       {/* BARBER */}
       <section className="barber" id="barber">
         <div className="container">
-          <div className="barber-content reveal">
-            <span className="section-tag">Der Barber</span>
-            <h2>MUDI</h2>
-            <p className="barber-intro">
-              Gründer und Master Barber. Meister aller Schnitttechniken inkl.
-              Transition-Styles &amp; Fade Cuts. <br />
-              Gewinner: 1. Platz &bdquo;Barber Battle Vienna 2022&ldquo;.
-            </p>
-            <div className="barber-stats">
-              <div className="stat">
-                <span className="stat-number">17+</span>
-                <span className="stat-text">Jahre Erfahrung</span>
-              </div>
-              <div className="stat">
-                <span className="stat-number">10K+</span>
-                <span className="stat-text">Zufriedene Kunden</span>
-              </div>
-              <div className="stat">
-                <span className="stat-number">∞</span>
-                <span className="stat-text">Leidenschaft</span>
+          <div className="barber-grid">
+            <div className="barber-image reveal">
+              <Image
+                src="/mudi_barber.webp"
+                alt="MUDI Barber"
+                width={650}
+                height={800}
+              />
+            </div>
+            <div className="barber-content reveal">
+              <span className="section-tag">Der Barber</span>
+              <h2>MUDI</h2>
+              <p className="barber-intro">
+                Gründer und Master Barber. Meister aller Schnitttechniken inkl.
+                Transition-Styles &amp; Fade Cuts. <br />
+                Gewinner: 1. Platz &bdquo;Barber Battle Vienna 2022&ldquo;.
+              </p>
+              <div className="barber-stats">
+                <div className="stat">
+                  <span className="stat-number">17+</span>
+                  <span className="stat-text">Jahre Erfahrung</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-number">10K+</span>
+                  <span className="stat-text">Zufriedene Kunden</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-number">∞</span>
+                  <span className="stat-text">Leidenschaft</span>
+                </div>
               </div>
             </div>
           </div>
@@ -350,7 +340,7 @@ export default function Home() {
               <div className="service-item">
                 <div className="service-info">
                   <h4>The Signature Cut</h4>
-                  <p>Beratung, Wäsche, Schnitt &amp; Styling</p>
+                  <p>Beratung, Haarwäsche &amp; Styling</p>
                   <span className="service-duration">40 min</span>
                 </div>
                 <span className="service-price">&euro; 42</span>
@@ -358,7 +348,10 @@ export default function Home() {
               <div className="service-item">
                 <div className="service-info">
                   <h4>Young Gent (Kids Cut)</h4>
-                  <p>Kinderhaarschnitt</p>
+                  <p>
+                    Einzelschnitt für die junge Generation – inkl. Wäsche auf
+                    Wunsch
+                  </p>
                   <span className="service-duration">30 min</span>
                 </div>
                 <span className="service-price">&euro; 35</span>
@@ -376,7 +369,7 @@ export default function Home() {
               <div className="service-item">
                 <div className="service-info">
                   <h4>Beard Design &amp; Contour</h4>
-                  <p>Form &amp; Messer-Kontur inkl. UV-C Heißkompresse</p>
+                  <p>Formgebung &amp; Messer-Kontur inkl. UV-C Heißkompresse</p>
                   <span className="service-duration">30 min</span>
                 </div>
                 <span className="service-price">&euro; 35</span>
@@ -384,36 +377,10 @@ export default function Home() {
               <div className="service-item">
                 <div className="service-info">
                   <h4>Traditional Full Shave</h4>
-                  <p>Klassische Vollrasur</p>
+                  <p>Klassische Messer-Vollrasur &amp; intensive Pflege</p>
                   <span className="service-duration">45 min</span>
                 </div>
                 <span className="service-price">&euro; 45</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Wellness */}
-          <div className="service-category reveal">
-            <div className="category-header">
-              <span className="category-icon"></span>
-              <h3>WELLNESS</h3>
-            </div>
-            <div className="service-list">
-              <div className="service-item">
-                <div className="service-info">
-                  <h4>Deep Head Spa</h4>
-                  <p>Kopf, Schläfen &amp; Nacken Massage</p>
-                  <span className="service-duration">25 min</span>
-                </div>
-                <span className="service-price">&euro; 29</span>
-              </div>
-              <div className="service-item">
-                <div className="service-info">
-                  <h4>The Guardian Ritual</h4>
-                  <p>Gesichtsmassage, Hot Towel &amp; Kopf-Wellness</p>
-                  <span className="service-duration">40 min</span>
-                </div>
-                <span className="service-price">&euro; 60</span>
               </div>
             </div>
           </div>
@@ -428,49 +395,59 @@ export default function Home() {
               <div className="service-item featured">
                 <div className="service-info">
                   <h4>The Essentials</h4>
-                  <p>Signature Cut + Beard Design + Deep Head Spa</p>
+                  <p>
+                    Signature Cut, Beard Design &amp; entspannende Kopfmassage
+                  </p>
                   <span className="service-duration">80 min</span>
                 </div>
                 <span className="service-price">&euro; 75</span>
               </div>
-              <div className="service-item premium">
-                <div className="service-info">
-                  <h4>The Full Ritual</h4>
-                  <p>Schnitt + Beard Design + Deep Head Spa + Waxing</p>
-                  <span className="service-duration">90 min</span>
-                </div>
-                <span className="service-price">&euro; 95</span>
-              </div>
-              <div className="service-item premium">
-                <div className="service-info">
-                  <h4>The Guardian Experience</h4>
-                  <p>Signature Cut + Beard Design + Guardian Ritual + Waxing</p>
-                  <span className="service-duration">120 min</span>
-                </div>
-                <span className="service-price">&euro; 129</span>
-              </div>
               <div className="service-item">
                 <div className="service-info">
                   <h4>The Legacy (Dad &amp; Son)</h4>
-                  <p>Vater &amp; Sohn Combo</p>
+                  <p>Das Ritual für Vater &amp; Sohn</p>
                   <span className="service-duration">75 min</span>
                 </div>
                 <span className="service-price">&euro; 75</span>
               </div>
+              <div className="service-item">
+                <div className="service-info">
+                  <h4>Jeder weitere Young Gent</h4>
+                  <p>Zusätzlicher Kinderhaarschnitt</p>
+                  <span className="service-duration">30 min</span>
+                </div>
+                <span className="service-price">+&euro; 30</span>
+              </div>
+              <div className="service-item premium">
+                <div className="service-info">
+                  <h4>The Full Ritual</h4>
+                  <p>Schnitt, Bart, Massage, Waxing/Threading</p>
+                  <span className="service-duration">90 min</span>
+                </div>
+                <span className="service-price">&euro; 95</span>
+              </div>
             </div>
           </div>
 
-          {/* Add-Ons */}
+          {/* Treatments */}
           <div className="service-category reveal">
             <div className="category-header">
               <span className="category-icon"></span>
-              <h3>ADD-ONS</h3>
+              <h3>TREATMENTS</h3>
             </div>
             <div className="service-list">
               <div className="service-item">
                 <div className="service-info">
-                  <h4>Nose &amp; Ear Waxing</h4>
-                  <p>Schonendes Waxing für Nase &amp; Ohren</p>
+                  <h4>The Calm</h4>
+                  <p>Tiefenentspannende Kopf- &amp; Nackenmassage</p>
+                  <span className="service-duration">15 min</span>
+                </div>
+                <span className="service-price">&euro; 15</span>
+              </div>
+              <div className="service-item">
+                <div className="service-info">
+                  <h4>Nose &amp; Ear Waxing / Threading</h4>
+                  <p></p>
                   <span className="service-duration">10 min</span>
                 </div>
                 <span className="service-price">&euro; 12</span>
@@ -480,14 +457,72 @@ export default function Home() {
 
           {/* WHYEM Standard Box */}
           <div className="whyem-standard reveal">
-            <div className="standard-icon"></div>
-            <h3 style={{ opacity: '0.5' }}>WHYEM STANDARD</h3>
-            <p className="standard-tagline">Bei jedem Service inklusive</p>
+            <h3 style={{ opacity: '0.7' }}>WHYEM STANDARD</h3>
+            <p className="standard-tagline">Hygiene ohne Kompromisse.</p>
             <p>
-              Frische Einweg-Materialien &bull; Desinfizierte Werkzeuge <br />
-              UV-Licht gereinigte Handtücher &bull; Premium Pflegeprodukte
-              &bull; Heißes Tuch Finish &bull; Styling Beratung
+              Wir verwenden ausschließlich Handtücher, die mittels UV-C Licht
+              klinisch rein desinfiziert und für Ihr Wohlbefinden konstant
+              beheizt werden.
             </p>
+          </div>
+
+          {/* Coming Soon Section */}
+          <div className="coming-soon-section reveal">
+            <div className="coming-soon-label">COMING SOON</div>
+
+            {/* Wellness by Specialist */}
+            <div className="service-category coming-soon">
+              <div className="category-header">
+                <span className="category-icon"></span>
+                <h3>WELLNESS BY SPECIALIST</h3>
+              </div>
+              <div className="service-list">
+                <div className="service-item">
+                  <div className="service-info">
+                    <h4>Deep Head Spa</h4>
+                    <p>Kopf, Schläfen &amp; Nacken Massage</p>
+                    <span className="service-duration">25 min</span>
+                  </div>
+                  <span className="service-price">&euro; 29</span>
+                </div>
+                <div className="service-item">
+                  <div className="service-info">
+                    <h4>The Guardian Ritual</h4>
+                    <p>Gesichtsmassage, Hot Towel &amp; Kopf-Wellness</p>
+                    <span className="service-duration">40 min</span>
+                  </div>
+                  <span className="service-price">&euro; 60</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Expanded Combos Coming Soon */}
+            <div className="service-category coming-soon">
+              <div className="category-header">
+                <span className="category-icon"></span>
+                <h3>ERWEITERTE COMBOS</h3>
+              </div>
+              <div className="service-list">
+                <div className="service-item premium">
+                  <div className="service-info">
+                    <h4>The Full Ritual</h4>
+                    <p>Schnitt, Bart, Deep Head Spa &amp; Waxing</p>
+                    <span className="service-duration">90 min</span>
+                  </div>
+                  <span className="service-price">&euro; 95</span>
+                </div>
+                <div className="service-item premium">
+                  <div className="service-info">
+                    <h4>The Guardian Experience</h4>
+                    <p>
+                      Signature Cut, Beard Design, Guardian Ritual &amp; Waxing
+                    </p>
+                    <span className="service-duration">120 min</span>
+                  </div>
+                  <span className="service-price">&euro; 129</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -499,9 +534,9 @@ export default function Home() {
             <span className="section-tag">Öffnungszeiten</span>
             <h2>Wann wir für dich da sind</h2>
             <div className="hours-grid">
-              <div className="hours-item">
+              <div className="hours-item closed">
                 <span className="day">Montag</span>
-                <span className="time">geschlossen</span>
+                <span className="time">Geschlossen</span>
               </div>
               <div className="hours-item">
                 <span className="day">Dienstag</span>
@@ -568,9 +603,9 @@ export default function Home() {
               <div className="info-block">
                 <h3>Kontakt</h3>
                 <p>
-                  Tel: +43 XXX XXX XX XX
+                  Tel: +43 660 5857123
                   <br />
-                  E-Mail: info@whyem.at
+                  E-Mail: barbermudi@gmail.com
                 </p>
               </div>
               <div className="info-block">

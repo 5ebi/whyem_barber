@@ -13,7 +13,7 @@ export default function Impressum() {
         <section>
           <h2>Angaben gemäß § 5 ECG</h2>
           <p>
-            <strong>WHYEM Barber Studio</strong>
+            <strong>Whyem Barbershop X Co.</strong>
             <br />
             Weimarer Straße 13
             <br />
@@ -26,9 +26,11 @@ export default function Impressum() {
         <section>
           <h2>Kontakt</h2>
           <p>
-            Telefon: [TELEFONNUMMER EINFÜGEN]
+            Telefon: +43 660 5857123
             <br />
-            E-Mail: [EMAIL EINFÜGEN]
+            WhatsApp Business: +43 660 5857123
+            <br />
+            E-Mail: barbermudi@gmail.com
           </p>
         </section>
 
@@ -44,7 +46,7 @@ export default function Impressum() {
 
         <section>
           <h2>UID-Nummer</h2>
-          <p>[UID-NUMMER EINFÜGEN]</p>
+          <p>ATU82879547</p>
         </section>
 
         <section>
