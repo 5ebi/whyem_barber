@@ -575,9 +575,30 @@ export default function Home() {
             <h2>Unsere Arbeiten</h2>
           </div>
           <div className="gallery-grid reveal">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
+            {[1, 2, 3].map((i) => (
               <div className="gallery-item" key={i}>
-                <div className="gallery-placeholder">✂</div>
+                {i === 1 || i === 2 || i === 3 ? (
+                  <Image
+                    src={
+                      i === 1
+                        ? '/customer1.webp'
+                        : i === 2
+                          ? '/customer2.webp'
+                          : '/customer3.webp'
+                    }
+                    alt={
+                      i === 1
+                        ? 'Customer One'
+                        : i === 2
+                          ? 'Customer Two'
+                          : 'Customer Three'
+                    }
+                    width={800}
+                    height={800}
+                  />
+                ) : (
+                  <div className="gallery-placeholder">✂</div>
+                )}
               </div>
             ))}
           </div>
