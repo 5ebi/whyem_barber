@@ -15,14 +15,15 @@ export default function Home() {
       if (!floatingLogoRef.current || !navbarRef.current) return;
 
       const scrolled = window.scrollY;
-      const maxScroll = 300;
+      const maxScroll = 200; // Scroll distance for full transition
       const progress = Math.min(scrolled / maxScroll, 1);
 
       // Logo Animation
       const logo = floatingLogoRef.current;
       const isMobile = window.innerWidth <= 768;
-      const startTop = isMobile ? 30 : 35; // vh - mobile starts higher
+      const startTop = isMobile ? 30 : 35; // vh
       const endTop = 40; // px (center of 80px navbar)
+
       const currentTop =
         progress < 1
           ? `calc(${startTop}vh - ${progress * startTop}vh + ${progress * endTop}px)`
@@ -30,18 +31,20 @@ export default function Home() {
       logo.style.top = currentTop;
 
       // Responsive logo sizes
-      const startSize = isMobile ? Math.min(window.innerWidth * 0.9, 336) : 480;
+      const startSize = isMobile
+        ? Math.min(window.innerWidth * 0.81, 302)
+        : 480;
       const endSize = 80;
       const currentSize = startSize - progress * (startSize - endSize);
+
       logo.style.width = `${currentSize}px`;
       logo.style.height = `${currentSize}px`;
 
-      // Navbar Opacity + Border - blur fades in while logo moves
+      // Navbar Opacity + Border
       const navbar = navbarRef.current;
-      const navbarOpacity = Math.min(progress * 2, 1);
-      navbar.style.opacity = `${navbarOpacity}`;
+      navbar.style.opacity = `${progress}`;
       navbar.style.borderBottomColor =
-        progress >= 1 ? 'rgba(255, 255, 255, 0.1)' : 'transparent';
+        progress >= 0.8 ? 'rgba(255, 255, 255, 0.1)' : 'transparent';
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });

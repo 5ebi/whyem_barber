@@ -785,6 +785,10 @@ section {
     grid-template-columns: repeat(2, 1fr);
     width: min(90%, 520px);
   }
+
+  .gallery-grid .gallery-item:nth-child(3) {
+    grid-column: 1 / -1;
+  }
 }
 
 .gallery-item {
