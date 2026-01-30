@@ -10,6 +10,116 @@ export default function Home() {
   const floatingLogoRef = useRef<HTMLDivElement>(null);
   const navbarRef = useRef<HTMLDivElement>(null);
 
+  // Strukturierte Daten für Google (JSON-LD)
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'HairSalon',
+    '@id': 'https://whyem.at/#barbershop',
+    name: 'WHYEM Barber',
+    alternateName: 'Whyem Barbershop & Co',
+    image: [
+      'https://whyem.at/mudi_barber.webp',
+      'https://whyem.at/customer1.webp',
+      'https://whyem.at/customer2.webp',
+      'https://whyem.at/customer3.webp',
+    ],
+    description:
+      'Premium Barbershop in Wien 1180 mit über 17 Jahren Erfahrung. Spezialisiert auf Haarschnitte, Fade Cuts, Bartpflege und Styling.',
+    url: 'https://whyem.at',
+    telephone: '+436605857123',
+    email: 'barbermudi@gmail.com',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Weimarer Straße 13',
+      addressLocality: 'Wien',
+      addressRegion: 'Wien',
+      postalCode: '1180',
+      addressCountry: 'AT',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 48.2333333,
+      longitude: 16.3333333,
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '09:30',
+        closes: '19:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: 'Saturday',
+        opens: '09:30',
+        closes: '16:00',
+      },
+    ],
+    priceRange: '€€',
+    currenciesAccepted: 'EUR',
+    paymentAccepted: 'Cash, Card',
+    founder: {
+      '@type': 'Person',
+      name: 'Mudi',
+      jobTitle: 'Master Barber',
+      award: '1. Platz Barber Battle Vienna 2022',
+    },
+    sameAs: [
+      'https://www.treatwell.at/',
+      'https://www.instagram.com/haarmudi',
+      'https://share.google/8TGaoyoiiUEXrQWHL',
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Barbershop Services',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'The Signature Cut',
+            description: 'Beratung, Haarwäsche & Styling',
+            provider: {
+              '@type': 'HairSalon',
+              name: 'WHYEM Barber',
+            },
+          },
+          price: '42.00',
+          priceCurrency: 'EUR',
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Beard Design & Contour',
+            description: 'Formgebung & Messer-Kontur inkl. UV-C Heißkompresse',
+            provider: {
+              '@type': 'HairSalon',
+              name: 'WHYEM Barber',
+            },
+          },
+          price: '35.00',
+          priceCurrency: 'EUR',
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'The Essentials',
+            description:
+              'Signature Cut, Beard Design & entspannende Kopfmassage',
+            provider: {
+              '@type': 'HairSalon',
+              name: 'WHYEM Barber',
+            },
+          },
+          price: '75.00',
+          priceCurrency: 'EUR',
+        },
+      ],
+    },
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (!floatingLogoRef.current || !navbarRef.current) return;
@@ -86,6 +196,12 @@ export default function Home() {
 
   return (
     <>
+      {/* JSON-LD Strukturierte Daten */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
       {/* NAVBAR WITH BLUR */}
       <div
         className="navbar-blur"
@@ -636,7 +752,7 @@ export default function Home() {
                 <h3>Social</h3>
                 <div className="social-links">
                   <a
-                    href="https://instagram.com/"
+                    href="https://www.instagram.com/haarmudi"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="social-link"
@@ -654,18 +770,7 @@ export default function Home() {
                     </svg>
                   </a>
                   <a
-                    href="https://facebook.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-link"
-                    aria-label="Facebook"
-                  >
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                    </svg>
-                  </a>
-                  <a
-                    href="https://wa.me/"
+                    href="https://wa.me/436605857123"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="social-link"
@@ -699,14 +804,14 @@ export default function Home() {
           <div className="map-container reveal" ref={mapRef}>
             {mapLoaded ? (
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2657.123456789!2d16.3333333!3d48.2333333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sWeimarer%20Stra%C3%9Fe%2013%2C%201180%20Wien!5e0!3m2!1sde!2sat!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2659.875548!2d16.3146956!3d48.2327785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d07b1e5e5e5e5%3A0x0!2sWeimarer%20Stra%C3%9Fe%2013%2C%201180%20Wien!5e0!3m2!1sde!2sat!4v1738252800000!5m2!1sde!2sat"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="WHYEM Barber Location"
+                title="WHYEM Barber - Weimarer Straße 13, 1180 Wien"
               />
             ) : (
               <div className="map-placeholder">

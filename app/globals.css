@@ -994,10 +994,12 @@ section {
 
 .map-container {
   width: 100%;
+  max-width: 1000px;
+  margin: 4rem auto 0;
   height: 400px;
-  margin-top: 4rem;
   background: var(--gray-900);
   overflow: hidden;
+  position: relative;
 }
 
 .map-container iframe {

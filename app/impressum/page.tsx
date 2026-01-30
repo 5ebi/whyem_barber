@@ -1,4 +1,15 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Impressum',
+  description:
+    'Rechtliche Informationen und Kontaktdaten von WHYEM Barber – Premium Barbershop in Wien 1180, Weimarer Straße 13.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function Impressum() {
   return (

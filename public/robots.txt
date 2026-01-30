@@ -1,0 +1,13 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Wichtige Seiten
+Allow: /impressum
+Allow: /datenschutz
+
+# Sitemap
+Sitemap: https://whyem.at/sitemap.xml
+
+# Crawl-Delay
+Crawl-delay: 1

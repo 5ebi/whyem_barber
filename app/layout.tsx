@@ -15,17 +15,80 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Whyem Barber | Premium Barbershop Wien 1180',
-  description:
-    'Whyem Barber – Die Antwort auf das Warum. Premium Barbershop in der Weimarer Straße 13, 1180 Wien. Haarschnitt, Bartpflege & Styling mit 17+ Jahren Erfahrung.',
-  keywords:
-    'Barber Wien, Friseur 1180, Haarschnitt Wien, Fade Cut, Bartpflege, Whyem Barber',
-  openGraph: {
-    title: 'Whyem Barber | Premium Barbershop Wien',
-    description:
-      'Premium Barbershop in Wien 1180 – Check the line, Make your cut, Move your feet.',
-    type: 'website',
+  metadataBase: new URL('https://whyem.at'),
+  title: {
+    default: 'WHYEM Barber | Premium Barbershop Wien 1180 | Weimarer Straße',
+    template: '%s | WHYEM Barber Wien 1180',
   },
+  description:
+    'WHYEM Barber – Die Antwort auf das Warum. Premium Barbershop mit 17+ Jahren Erfahrung in der Weimarer Straße 13, 1180 Wien. Meisterhafte Haarschnitte, Fade Cuts, Bartpflege & Styling. Jetzt Termin buchen!',
+  keywords: [
+    'Barber Wien',
+    'Friseur 1180',
+    'Barbershop Wien',
+    'Haarschnitt Wien',
+    'Fade Cut Wien',
+    'Bartpflege Wien',
+    'Herrenfriseur Wien 1180',
+    'WHYEM Barber',
+    'Weimarer Straße',
+    'Premium Barbershop',
+    'Männerfriseur Wien',
+    'Barber Battle Vienna',
+    'Best Barber Wien',
+    'Friseur Währing',
+  ],
+  authors: [{ name: 'WHYEM Barber' }],
+  creator: 'WHYEM Barber',
+  publisher: 'WHYEM Barber',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    title: 'WHYEM Barber | Premium Barbershop Wien 1180',
+    description:
+      'Die Antwort auf das Warum. Premium Barbershop in Wien 1180 – Meisterhafte Haarschnitte, Fade Cuts & Bartpflege mit 17+ Jahren Erfahrung.',
+    url: 'https://whyem.at',
+    siteName: 'WHYEM Barber',
+    locale: 'de_AT',
+    type: 'website',
+    images: [
+      {
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'WHYEM Barber – Premium Barbershop Wien 1180',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WHYEM Barber | Premium Barbershop Wien 1180',
+    description:
+      'Die Antwort auf das Warum. Premium Barbershop in Wien 1180 – Meisterhafte Haarschnitte, Fade Cuts & Bartpflege.',
+    images: ['/opengraph-image'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://whyem.at',
+  },
+  verification: {
+    // Google Search Console wird später hinzugefügt
+    // google: 'deine-google-verification-code',
+  },
+  category: 'business',
 };
 
 export default function RootLayout({
@@ -35,6 +98,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#0a0a0a" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

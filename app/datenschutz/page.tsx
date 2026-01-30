@@ -1,4 +1,15 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Datenschutzerklärung',
+  description:
+    'Datenschutzerklärung von WHYEM Barber – Informationen zum Schutz Ihrer persönlichen Daten gemäß DSGVO.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function Datenschutz() {
   return (
