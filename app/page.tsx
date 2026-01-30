@@ -556,7 +556,7 @@ export default function Home() {
               </div>
               <div className="hours-item">
                 <span className="day">Samstag</span>
-                <span className="time">09:30 &ndash; 19:00</span>
+                <span className="time">09:30 &ndash; 16:00</span>
               </div>
               <div className="hours-item closed">
                 <span className="day">Sonntag</span>
