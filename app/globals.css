@@ -631,9 +631,13 @@ section {
 @media (max-width: 600px) {
   .service-item {
     padding: 1rem 0;
+    align-items: stretch;
   }
   .service-item:hover {
     padding-left: 0;
+  }
+  .service-info {
+    flex: 1;
   }
   .service-info h4 {
     font-size: 0.9rem;
@@ -647,6 +651,10 @@ section {
   }
   .service-price {
     font-size: 0.9rem;
+    margin-left: 1rem;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
   }
   .service-category {
     margin-bottom: 2.5rem;
@@ -1135,6 +1143,7 @@ section {
   max-width: 700px;
   margin: 0 auto;
   padding: 0 2rem;
+  overflow-x: hidden;
 }
 
 .back-link {
@@ -1187,10 +1196,18 @@ section {
   color: var(--fg);
   text-decoration: underline;
   text-underline-offset: 3px;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .legal-page a:hover {
   text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .legal-page a {
+    word-break: break-all;
+  }
 }
 
 .legal-date {

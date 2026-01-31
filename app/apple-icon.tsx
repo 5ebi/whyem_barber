@@ -1,4 +1,5 @@
-import { ImageResponse } from 'next/og';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 // Image metadata
 export const size = {
@@ -9,24 +10,13 @@ export const contentType = 'image/png';
 
 // Apple Touch Icon component
 export default function AppleIcon() {
-  return new ImageResponse(
-    <div
-      style={{
-        fontSize: 96,
-        background: '#0a0a0a',
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: '#ebebeb',
-        fontWeight: 700,
-      }}
-    >
-      W
-    </div>,
-    {
-      ...size,
+  const iconPath = join(process.cwd(), 'public', 'logo_icon_180.png');
+  const iconBuffer = readFileSync(iconPath);
+
+  return new Response(iconBuffer, {
+    headers: {
+      'Content-Type': 'image/png',
+      'Cache-Control': 'public, max-age=31536000, immutable',
     },
-  );
+  });
 }
