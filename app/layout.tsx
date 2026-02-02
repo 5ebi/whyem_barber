@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://whyem.at'),
+  metadataBase: new URL('https://whyem.com'),
   title: {
     default: 'WHYEM Barber | Premium Barbershop Wien 1180 | Weimarer Straße',
     template: '%s | WHYEM Barber Wien 1180',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     title: 'WHYEM Barber | Premium Barbershop Wien 1180',
     description:
       'Die Antwort auf das Warum. Premium Barbershop in Wien 1180 – Meisterhafte Haarschnitte, Fade Cuts & Bartpflege mit 17+ Jahren Erfahrung.',
-    url: 'https://whyem.at',
+    url: 'https://whyem.com',
     siteName: 'WHYEM Barber',
     locale: 'de_AT',
     type: 'website',

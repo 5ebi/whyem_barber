@@ -14,18 +14,18 @@ export default function Home() {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'HairSalon',
-    '@id': 'https://whyem.at/#barbershop',
+    '@id': 'https://whyem.com/#barbershop',
     name: 'WHYEM Barber',
     alternateName: 'Whyem Barbershop & Co',
     image: [
-      'https://whyem.at/mudi_barber.webp',
-      'https://whyem.at/customer1.webp',
-      'https://whyem.at/customer2.webp',
-      'https://whyem.at/customer3.webp',
+      'https://whyem.com/mudi_barber.webp',
+      'https://whyem.com/customer1.webp',
+      'https://whyem.com/customer2.webp',
+      'https://whyem.com/customer3.webp',
     ],
     description:
       'Premium Barbershop in Wien 1180 mit über 17 Jahren Erfahrung. Spezialisiert auf Haarschnitte, Fade Cuts, Bartpflege und Styling.',
-    url: 'https://whyem.at',
+    url: 'https://whyem.com',
     telephone: '+436605857123',
     email: 'barbermudi@gmail.com',
     address: {
