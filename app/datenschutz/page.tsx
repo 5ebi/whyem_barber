@@ -155,7 +155,7 @@ export default function Datenschutz() {
           <p>
             WHYEM Barber Studio
             <br />
-            [NAME DES INHABERS EINFÜGEN]
+            Muhammet Yüksel
             <br />
             Weimarer Straße 13
             <br />
@@ -164,9 +164,9 @@ export default function Datenschutz() {
             Österreich
           </p>
           <p>
-            Telefon: [TELEFONNUMMER EINFÜGEN]
+            Telefon: +43 660 5857123
             <br />
-            E-Mail: [EMAIL EINFÜGEN]
+            E-Mail: barbermudi@gmail.com
           </p>
           <p>
             Verantwortliche Stelle ist die natürliche oder juristische Person,

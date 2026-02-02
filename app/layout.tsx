@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://whyem.at',
+    canonical: 'https://whyem.com',
   },
   verification: {
     // Google Search Console wird später hinzugefügt
@@ -106,6 +106,10 @@ export default function RootLayout({
           name="apple-mobile-web-app-status-bar-style"
           content="black-translucent"
         />
+        <meta name="geo.region" content="AT-9" />
+        <meta name="geo.placename" content="Wien" />
+        <meta name="geo.position" content="48.2327785;16.3146956" />
+        <meta name="ICBM" content="48.2327785, 16.3146956" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

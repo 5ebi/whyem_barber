@@ -61,7 +61,7 @@ export default function Impressum() {
 
         <section>
           <h2>Inhaber / Geschäftsführer</h2>
-          <p>[NAME DES INHABERS EINFÜGEN]</p>
+          <p>Muhammet Yüksel</p>
         </section>
 
         <section>

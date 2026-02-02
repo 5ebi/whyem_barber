@@ -209,7 +209,7 @@ export default function Home() {
   }, [mapLoaded]);
 
   return (
-    <>
+    <main>
       {/* JSON-LD Strukturierte Daten */}
       <script
         type="application/ld+json"
@@ -263,7 +263,7 @@ export default function Home() {
         >
           <Image
             src="/logo_w_white.png"
-            alt="WHYEM Logo - W"
+            alt="WHYEM Barber Logo W – Premium Barbershop Wien 1180"
             width={500}
             height={500}
             priority
@@ -283,7 +283,7 @@ export default function Home() {
         >
           <Image
             src="/logo_y_white.png"
-            alt="WHYEM Logo - Y"
+            alt="WHYEM Barber Logo Y – Barbershop Weimarer Straße Wien"
             width={500}
             height={500}
             priority
@@ -295,6 +295,7 @@ export default function Home() {
       {/* HERO */}
       <section className="hero">
         <div className="hero-content">
+          <h1 className="sr-only">WHYEM Barber – Premium Barbershop in Wien 1180</h1>
           <div
             className="hero-logo-spacer"
             style={{
@@ -314,7 +315,7 @@ export default function Home() {
           >
             <Image
               src="/whyem.webp"
-              alt="WHYEM"
+              alt="WHYEM Schriftzug – Barbershop Wien Währing"
               width={330}
               height={100}
               priority
@@ -425,7 +426,7 @@ export default function Home() {
             <div className="barber-image reveal">
               <Image
                 src="/mudi_barber.webp"
-                alt="MUDI Barber"
+                alt="Mudi – Master Barber mit 17 Jahren Erfahrung bei WHYEM Barbershop Wien 1180"
                 width={650}
                 height={800}
                 sizes="(max-width: 968px) 100vw, 50vw"
@@ -583,7 +584,7 @@ export default function Home() {
               <div className="service-item">
                 <div className="service-info">
                   <h4>Nose &amp; Ear Waxing / Threading</h4>
-                  <p></p>
+                  <p>Professionelle Nasen- &amp; Ohrenhaarpflege</p>
                   <span className="service-duration">10 min</span>
                 </div>
                 <span className="service-price">&euro; 12</span>
@@ -724,10 +725,10 @@ export default function Home() {
                     }
                     alt={
                       i === 1
-                        ? 'Low Fade Haarschnitt von hinten'
+                        ? 'Low Fade Haarschnitt von hinten – WHYEM Barber Wien'
                         : i === 2
-                          ? 'Mid Fade Haarschnitt von der Seite'
-                          : 'Low Fade Haarschnitt von der Seite'
+                          ? 'Mid Fade Haarschnitt von der Seite – WHYEM Barber Wien'
+                          : 'Low Fade Haarschnitt seitlich – Fade Cut Barbershop Wien 1180'
                     }
                     width={800}
                     height={800}
@@ -894,6 +895,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </>
+    </main>
   );
 }

@@ -2,12 +2,5 @@
 User-agent: *
 Allow: /
 
-# Wichtige Seiten
-Allow: /impressum
-Allow: /datenschutz
-
 # Sitemap
 Sitemap: https://whyem.com/sitemap.xml
-
-# Crawl-Delay
-Crawl-delay: 1
