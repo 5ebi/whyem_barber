@@ -263,10 +263,10 @@ export default function Home() {
         >
           <Image
             src="/logo_w_white.png"
-            alt="W"
+            alt="WHYEM Logo - W"
             width={500}
             height={500}
-            loading="lazy"
+            priority
             style={{ width: '100%', height: '100%', objectFit: 'contain' }}
           />
         </div>
@@ -283,10 +283,10 @@ export default function Home() {
         >
           <Image
             src="/logo_y_white.png"
-            alt="Y"
+            alt="WHYEM Logo - Y"
             width={500}
             height={500}
-            loading="lazy"
+            priority
             style={{ width: '100%', height: '100%', objectFit: 'contain' }}
           />
         </div>
@@ -317,6 +317,7 @@ export default function Home() {
               alt="WHYEM"
               width={330}
               height={100}
+              priority
               className="animate-fade-in-up delay-600"
               style={{
                 position: 'absolute',
@@ -327,9 +328,10 @@ export default function Home() {
             />
             <Image
               src="/barbershop_x_co.webp"
-              alt="Barbershop x co"
+              alt="Barbershop & Co"
               width={330}
               height={100}
+              priority
               className="animate-fade-in-up-60 delay-800"
               style={{
                 position: 'absolute',
@@ -550,7 +552,7 @@ export default function Home() {
                   <p>Zusätzlicher Kinderhaarschnitt</p>
                   <span className="service-duration">30 min</span>
                 </div>
-                <span className="service-price">+&euro; 30</span>
+                <span className="service-price">&euro; 30</span>
               </div>
               <div className="service-item premium">
                 <div className="service-info">
@@ -722,10 +724,10 @@ export default function Home() {
                     }
                     alt={
                       i === 1
-                        ? 'Customer One'
+                        ? 'Low Fade Haarschnitt von hinten'
                         : i === 2
-                          ? 'Customer Two'
-                          : 'Customer Three'
+                          ? 'Mid Fade Haarschnitt von der Seite'
+                          : 'Low Fade Haarschnitt von der Seite'
                     }
                     width={800}
                     height={800}
@@ -759,7 +761,23 @@ export default function Home() {
               <div className="info-block">
                 <h3>Kontakt</h3>
                 <p>
-                  Tel: +43 660 5857123
+                  Tel:{' '}
+                  <a
+                    href="tel:+436605857123"
+                    style={{ textDecoration: 'underline' }}
+                  >
+                    +43 660 5857123
+                  </a>
+                  <br />
+                  WhatsApp:{' '}
+                  <a
+                    href="https://wa.me/436605857123"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: 'underline' }}
+                  >
+                    Nachricht senden
+                  </a>
                   <br />
                   E-Mail: barbermudi@gmail.com
                 </p>
@@ -846,7 +864,7 @@ export default function Home() {
             <div className="footer-logo">
               <Image
                 src="/logo_clean_small.png"
-                alt="WHYEM"
+                alt="WHYEM Barber Logo"
                 width={125}
                 height={125}
                 loading="lazy"

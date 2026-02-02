@@ -5,6 +5,15 @@ export const metadata: Metadata = {
   title: 'Impressum',
   description:
     'Rechtliche Informationen und Kontaktdaten von WHYEM Barber – Premium Barbershop in Wien 1180, Weimarer Straße 13.',
+  openGraph: {
+    title: 'Impressum | WHYEM Barber Wien 1180',
+    description:
+      'Rechtliche Informationen und Kontaktdaten von WHYEM Barber – Premium Barbershop in Wien 1180.',
+    url: 'https://whyem.at/impressum',
+  },
+  alternates: {
+    canonical: 'https://whyem.at/impressum',
+  },
   robots: {
     index: true,
     follow: true,

@@ -5,6 +5,15 @@ export const metadata: Metadata = {
   title: 'Datenschutzerklärung',
   description:
     'Datenschutzerklärung von WHYEM Barber – Informationen zum Schutz Ihrer persönlichen Daten gemäß DSGVO.',
+  openGraph: {
+    title: 'Datenschutzerklärung | WHYEM Barber Wien 1180',
+    description:
+      'Datenschutzerklärung von WHYEM Barber – Informationen zum Schutz Ihrer persönlichen Daten gemäß DSGVO.',
+    url: 'https://whyem.at/datenschutz',
+  },
+  alternates: {
+    canonical: 'https://whyem.at/datenschutz',
+  },
   robots: {
     index: true,
     follow: true,
