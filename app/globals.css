@@ -1249,10 +1249,16 @@ section {
   border-width: 0;
 }
 
+/* Progressive enhancement: visible by default, hidden only when JS is active */
 .reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-enabled .reveal:not(.active) {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.active {
@@ -1304,10 +1310,10 @@ section {
   opacity: 0.7;
 }
 
-/* Floating Logo Base */
+/* Floating Logo Base – GPU-composited via transform + opacity only */
 .floating-logo {
   transition: none;
-  will-change: transform, width, height, top;
+  will-change: transform, top;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
@@ -1320,16 +1326,7 @@ section {
   transition: none;
 }
 
-@media (max-width: 768px) {
-  .floating-logo {
-    transform: translate(-50%, -50%) scale(0.9) !important;
-  }
-}
-
 @media (max-width: 480px) {
-  .floating-logo {
-    transform: translate(-50%, -50%) !important;
-  }
   .barber-stats {
     gap: 2rem;
   }
