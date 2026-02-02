@@ -121,6 +121,9 @@ export default function Home() {
   };
 
   useEffect(() => {
+    let rafId: number;
+    let ticking = false;
+
     const handleScroll = () => {
       if (!floatingLogoRef.current || !navbarRef.current) return;
 
@@ -157,9 +160,20 @@ export default function Home() {
         progress >= 0.8 ? 'rgba(255, 255, 255, 0.1)' : 'transparent';
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    const onScroll = () => {
+      if (!ticking) {
+        rafId = requestAnimationFrame(handleScroll);
+        ticking = true;
+      }
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
     handleScroll(); // Initial call
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   useEffect(() => {
@@ -252,7 +266,7 @@ export default function Home() {
             alt="W"
             width={500}
             height={500}
-            priority
+            loading="lazy"
             style={{ width: '100%', height: '100%', objectFit: 'contain' }}
           />
         </div>
@@ -272,7 +286,7 @@ export default function Home() {
             alt="Y"
             width={500}
             height={500}
-            priority
+            loading="lazy"
             style={{ width: '100%', height: '100%', objectFit: 'contain' }}
           />
         </div>
@@ -412,6 +426,7 @@ export default function Home() {
                 alt="MUDI Barber"
                 width={650}
                 height={800}
+                sizes="(max-width: 968px) 100vw, 50vw"
               />
             </div>
             <div className="barber-content reveal">
@@ -714,6 +729,7 @@ export default function Home() {
                     }
                     width={800}
                     height={800}
+                    sizes="(max-width: 768px) 50vw, 25vw"
                   />
                 ) : (
                   <div className="gallery-placeholder">✂</div>
@@ -833,6 +849,7 @@ export default function Home() {
                 alt="WHYEM"
                 width={125}
                 height={125}
+                loading="lazy"
               />
             </div>
             <div className="footer-links">
