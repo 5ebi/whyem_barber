@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://whyem.com/sitemap.xml
+Sitemap: https://www.whyem.com/sitemap.xml

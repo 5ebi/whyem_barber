@@ -8,18 +8,18 @@ export default function Home() {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'HairSalon',
-    '@id': 'https://whyem.com/#barbershop',
+    '@id': 'https://www.whyem.com/#barbershop',
     name: 'WHYEM Barber',
     alternateName: 'Whyem Barbershop & Co',
     image: [
-      'https://whyem.com/mudi_barber.webp',
-      'https://whyem.com/customer1.webp',
-      'https://whyem.com/customer2.webp',
-      'https://whyem.com/customer3.webp',
+      'https://www.whyem.com/mudi_barber.webp',
+      'https://www.whyem.com/customer1.webp',
+      'https://www.whyem.com/customer2.webp',
+      'https://www.whyem.com/customer3.webp',
     ],
     description:
       'Premium Barbershop in Wien 1180 mit über 17 Jahren Erfahrung. Spezialisiert auf Haarschnitte, Fade Cuts, Bartpflege und Styling.',
-    url: 'https://whyem.com',
+    url: 'https://www.whyem.com',
     telephone: '+436605857123',
     email: 'barbermudi@gmail.com',
     address: {
@@ -116,7 +116,6 @@ export default function Home() {
 
   return (
     <main>
-      {/* JSON-LD Strukturierte Daten */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -125,7 +124,6 @@ export default function Home() {
       <FloatingLogo />
 
       <ScrollAnimations>
-        {/* HERO */}
         <section className="hero">
           <div className="hero-content">
             <h1 className="sr-only">
@@ -200,7 +198,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ABOUT */}
         <section className="about" id="about">
           <div className="container">
             <div className="about-grid">
@@ -255,7 +252,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* BARBER */}
         <section className="barber" id="barber">
           <div className="container">
             <div className="barber-grid">
@@ -295,7 +291,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SERVICES */}
         <section className="services" id="services">
           <div className="container">
             <div className="services-header reveal">
@@ -303,7 +298,6 @@ export default function Home() {
               <h2>Services</h2>
             </div>
 
-            {/* Hair */}
             <div className="service-category reveal">
               <div className="category-header">
                 <span className="category-icon"></span>
@@ -332,7 +326,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Beard */}
             <div className="service-category reveal">
               <div className="category-header">
                 <span className="category-icon"></span>
@@ -360,7 +353,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Combos */}
             <div className="service-category reveal">
               <div className="category-header">
                 <span className="category-icon"></span>
@@ -404,7 +396,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Treatments */}
             <div className="service-category reveal">
               <div className="category-header">
                 <span className="category-icon"></span>
@@ -430,7 +421,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* WHYEM Standard Box */}
             <div className="whyem-standard reveal">
               <h3 style={{ opacity: '0.7' }}>WHYEM STANDARD</h3>
               <p className="standard-tagline">Hygiene ohne Kompromisse.</p>
@@ -441,11 +431,9 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Coming Soon Section */}
             <div className="coming-soon-section reveal">
               <div className="coming-soon-label">COMING SOON</div>
 
-              {/* Wellness by Specialist */}
               <div className="service-category coming-soon">
                 <div className="category-header">
                   <span className="category-icon"></span>
@@ -471,7 +459,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Expanded Combos Coming Soon */}
               <div className="service-category coming-soon">
                 <div className="category-header">
                   <span className="category-icon"></span>
@@ -503,7 +490,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* HOURS */}
         <section className="hours" id="hours">
           <div className="container">
             <div className="hours-content reveal">
@@ -543,7 +529,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* GALLERY */}
         <section className="gallery" id="gallery">
           <div className="container">
             <div className="gallery-header reveal">
@@ -582,7 +567,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CONTACT */}
         <section className="contact" id="contact">
           <div className="container">
             <div className="contact-header reveal">
@@ -679,7 +663,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FOOTER */}
         <footer className="footer">
           <div className="container">
             <div className="footer-top">
@@ -713,6 +696,16 @@ export default function Home() {
               <p>
                 &copy; {new Date().getFullYear()} WHYEM. Alle Rechte
                 vorbehalten.
+              </p>
+              <p>
+                Made by{' '}
+                <a
+                  href="https://sebastianspeiser.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Sebastian Speiser
+                </a>
               </p>
             </div>
           </div>

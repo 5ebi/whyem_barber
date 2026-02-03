@@ -9,10 +9,10 @@ export const metadata: Metadata = {
     title: 'Datenschutzerklärung | WHYEM Barber Wien 1180',
     description:
       'Datenschutzerklärung von WHYEM Barber – Informationen zum Schutz Ihrer persönlichen Daten gemäß DSGVO.',
-    url: 'https://whyem.com/datenschutz',
+    url: 'https://www.whyem.com/datenschutz',
   },
   alternates: {
-    canonical: 'https://whyem.com/datenschutz',
+    canonical: 'https://www.whyem.com/datenschutz',
   },
   robots: {
     index: true,

@@ -15,7 +15,6 @@ export default function FloatingLogo() {
     const navbar = navbarRef.current;
     if (!logo || !navbar) return;
 
-    // Compute stable values once (recalc on resize)
     let startSize: number;
     let startY: number;
     const endSize = 48;
@@ -39,13 +38,11 @@ export default function FloatingLogo() {
       ticking = false;
       const progress = Math.min(window.scrollY / maxScroll, 1);
 
-      // Logo: use transform only (scale + translateY). No layout properties.
       const scale = 1 - progress * (1 - endSize / startSize);
       const currentY = startY + progress * (endY - startY);
       logo.style.transform = `translate(-50%, -50%) scale(${scale})`;
       logo.style.top = `${currentY}px`;
 
-      // Navbar
       navbar.style.opacity = `${progress}`;
       navbar.style.borderBottomColor =
         progress >= 0.8 ? 'rgba(255, 255, 255, 0.1)' : 'transparent';

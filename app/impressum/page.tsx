@@ -9,10 +9,10 @@ export const metadata: Metadata = {
     title: 'Impressum | WHYEM Barber Wien 1180',
     description:
       'Rechtliche Informationen und Kontaktdaten von WHYEM Barber – Premium Barbershop in Wien 1180.',
-    url: 'https://whyem.com/impressum',
+    url: 'https://www.whyem.com/impressum',
   },
   alternates: {
-    canonical: 'https://whyem.com/impressum',
+    canonical: 'https://www.whyem.com/impressum',
   },
   robots: {
     index: true,
@@ -174,7 +174,22 @@ export default function Impressum() {
           </p>
         </section>
 
-        <p className="legal-date">Stand: Januar 2026</p>
+        <section>
+          <h2>Webdesign &amp; Entwicklung</h2>
+          <p>
+            Sebastian Speiser
+            <br />
+            <a
+              href="https://sebastianspeiser.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              sebastianspeiser.com
+            </a>
+          </p>
+        </section>
+
+        <p className="legal-date">Stand: Februar 2026</p>
       </div>
     </main>
   );
