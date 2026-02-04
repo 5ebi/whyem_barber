@@ -1030,7 +1030,15 @@ section {
 
 .map-container iframe {
   filter: grayscale(100%) contrast(1.1);
-  opacity: 0.8;
+  opacity: 0.9;
+  transition:
+    filter 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.map-container:hover iframe {
+  filter: grayscale(0%) contrast(1);
+  opacity: 1;
 }
 
 .map-placeholder {
