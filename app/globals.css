@@ -1055,18 +1055,25 @@ section {
 
 .contact-cta {
   text-align: center;
-  padding: 3rem;
+  padding: clamp(2rem, 5vw, 3rem);
   border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1.5rem;
 }
 
 .contact-cta h3 {
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 300;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
+  line-height: 1.3;
+}
+
+.contact-cta .btn-primary {
+  padding: 1.25rem 3.5rem;
+  font-size: 0.875rem;
 }
 
 .contact-cta p {

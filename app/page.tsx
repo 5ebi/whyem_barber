@@ -3,6 +3,7 @@ import Link from 'next/link';
 import FloatingLogo from './components/FloatingLogo';
 import ScrollAnimations from './components/ScrollAnimations';
 import LazyMap from './components/LazyMap';
+import BookingButton from './components/BookingButton';
 
 export default function Home() {
   const structuredData = {
@@ -59,7 +60,7 @@ export default function Home() {
       award: '1. Platz Barber Battle Vienna 2022',
     },
     sameAs: [
-      'https://www.treatwell.at/',
+      'https://buchung.treatwell.at/ort/513506/menue/',
       'https://www.instagram.com/haarmudi',
       'https://share.google/8TGaoyoiiUEXrQWHL',
     ],
@@ -183,15 +184,11 @@ export default function Home() {
               <span className="divider" />
               <span>Est. 2026</span>
             </div>
-            <a
-              href="https://www.treatwell.at/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <BookingButton
+              location="hero"
               className="btn-primary animate-fade-in-up delay-1200"
               style={{ margin: '48px 0' }}
-            >
-              Termin jetzt buchen
-            </a>
+            />
           </div>
           <div className="scroll-indicator animate-fade-in-up delay-1400">
             <span />
@@ -645,17 +642,8 @@ export default function Home() {
                 <h3>
                   Dein Barber ist bereit.
                   <br /> Bist du es?
-                  <br />
                 </h3>
-
-                <a
-                  href="https://www.treatwell.at/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Termin jetzt buchen
-                </a>
+                <BookingButton location="contact" />
               </div>
             </div>
 
