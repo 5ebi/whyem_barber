@@ -8,7 +8,7 @@
   --gray-500: #8a8a8a;
   --gray-600: #525252;
   --gray-700: #404040;
-  --gray-800: #f1f1f1;
+  --gray-800: #262626;
   --gray-900: #171717;
   --border: rgba(255, 255, 255, 0.1);
 }
@@ -350,36 +350,6 @@ section {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .about-image {
-    order: 2;
-    aspect-ratio: 16/9;
-    width: 100%;
-    max-height: none;
-    transition: all 0.4s ease;
-  }
-  .about-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .about-content {
-    order: 1;
-    transition: all 0.4s ease;
-  }
-}
-
-.about-image {
-  aspect-ratio: 3/4;
-  background: var(--gray-900);
-  overflow: hidden;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.barber-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .about-content {
@@ -694,21 +664,6 @@ section {
     inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
-.standard-icon {
-  width: 44px;
-  height: 44px;
-  margin: 0 auto 1.5rem;
-  display: grid;
-  place-items: center;
-}
-
-.standard-icon img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  opacity: 0.9;
-}
-
 .whyem-standard h3 {
   font-size: 0.75rem;
   font-weight: 300;
@@ -840,36 +795,8 @@ section {
   object-position: center 10%;
 }
 
-.gallery-grid .gallery-item:nth-child(2) img {
-}
-
 .gallery-grid .gallery-item:nth-child(3) img {
   object-position: center 30%;
-}
-
-.gallery-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  opacity: 0.2;
-  transition: all 0.5s ease;
-}
-
-.gallery-item:hover .gallery-placeholder {
-  transform: scale(1.1);
-  opacity: 0.4;
-}
-
-.gallery-note {
-  margin-top: 1.75rem;
-  text-align: center;
-  color: var(--gray-500);
-  font-size: 0.875rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .contact {
@@ -879,33 +806,6 @@ section {
 .contact-header {
   text-align: center;
   margin-bottom: 4rem;
-}
-
-.contact-header h2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 300;
-}
-
-.contact-header .btn-primary {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  text-transform: none;
-  padding: 0.5rem 1.5rem;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--fg);
-}
-
-.contact-header .btn-primary:hover {
-  background: transparent;
-  border: 1px solid var(--fg);
-  box-shadow: none;
-  opacity: 0.7;
-}
-
-.contact-header .btn-primary::before {
-  display: none;
 }
 
 .contact-grid {
@@ -970,54 +870,6 @@ section {
   color: var(--bg);
 }
 
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.form-group label {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--gray-500);
-}
-
-.form-group input,
-.form-group textarea {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--border);
-  padding: 1rem 0;
-  font-size: 1rem;
-  color: var(--fg);
-  font-family: inherit;
-  transition: all 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--fg);
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: var(--gray-600);
-}
-
-.form-group textarea {
-  min-height: 120px;
-  resize: none;
-}
-
 .map-container {
   width: 100%;
   max-width: 1000px;
@@ -1040,6 +892,7 @@ section {
   filter: grayscale(0%) contrast(1);
   opacity: 1;
 }
+
 
 .map-placeholder {
   width: 100%;

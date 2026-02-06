@@ -535,33 +535,33 @@ export default function Home() {
               <h2>Unsere Arbeiten</h2>
             </div>
             <div className="gallery-grid reveal">
-              {[1, 2, 3].map((i) => (
-                <div className="gallery-item" key={i}>
-                  {i === 1 || i === 2 || i === 3 ? (
-                    <Image
-                      src={
-                        i === 1
-                          ? '/customer1.webp'
-                          : i === 2
-                            ? '/customer2.webp'
-                            : '/customer3.webp'
-                      }
-                      alt={
-                        i === 1
-                          ? 'Low Fade Haarschnitt von hinten – WHYEM Barber Wien'
-                          : i === 2
-                            ? 'Mid Fade Haarschnitt von der Seite – WHYEM Barber Wien'
-                            : 'Low Fade Haarschnitt seitlich – Fade Cut Barbershop Wien 1180'
-                      }
-                      width={800}
-                      height={800}
-                      sizes="(max-width: 768px) 50vw, 25vw"
-                    />
-                  ) : (
-                    <div className="gallery-placeholder">✂</div>
-                  )}
-                </div>
-              ))}
+              <div className="gallery-item">
+                <Image
+                  src="/customer1.webp"
+                  alt="Low Fade Haarschnitt von hinten – WHYEM Barber Wien"
+                  width={800}
+                  height={800}
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                />
+              </div>
+              <div className="gallery-item">
+                <Image
+                  src="/customer2.webp"
+                  alt="Mid Fade Haarschnitt von der Seite – WHYEM Barber Wien"
+                  width={800}
+                  height={800}
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                />
+              </div>
+              <div className="gallery-item">
+                <Image
+                  src="/customer3.webp"
+                  alt="Low Fade Haarschnitt seitlich – Fade Cut Barbershop Wien 1180"
+                  width={800}
+                  height={800}
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                />
+              </div>
             </div>
           </div>
         </section>

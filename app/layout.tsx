@@ -104,8 +104,8 @@ export default function RootLayout({
         />
         <meta name="geo.region" content="AT-9" />
         <meta name="geo.placename" content="Wien" />
-        <meta name="geo.position" content="48.2327785;16.3146956" />
-        <meta name="ICBM" content="48.2327785, 16.3146956" />
+        <meta name="geo.position" content="48.2273048;16.3407945" />
+        <meta name="ICBM" content="48.2273048, 16.3407945" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
