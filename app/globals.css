@@ -62,6 +62,9 @@ a {
   text-decoration: none;
 }
 
+/* ANIMATIONEN (Anleitung: ANLEITUNG_ANIMATIONEN.md)
+   Hero-Einblendung: @keyframes fadeIn / fadeIn60, .animate-fade-in-up, .delay-*
+   Einblenden beim Scrollen: .reveal (weiter unten) */
 @keyframes fadeIn {
   from {
     opacity: 0;
